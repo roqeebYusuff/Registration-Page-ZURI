@@ -1,0 +1,212 @@
+@import url(https://fonts.google.com/specimen/Poppins);
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+}
+
+:root {
+  --red: hsl(0, 100%, 74%);
+  --green: hsl(154, 59%, 51%);
+  --blue: hsl(248, 32%, 49%);
+  --darkBlue: hsl(249, 10%, 26%);
+  --grayishBlue: hsl(246, 25%, 77%);
+}
+
+img{
+  height: auto;
+  max-width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-image: url(./assets/img/bg-intro-desktop.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--red);
+  z-index: -1;
+}
+
+.container {
+  height: 100%;
+}
+
+.d-flex {
+  min-height: 100vh;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0 90px;
+}
+
+.d-flex .abt,
+.d-flex .form {
+  width: 50%;
+}
+
+.d-flex .abt {
+  padding: 0 1rem;
+}
+
+.d-flex .abt h4 {
+  font-size: 3rem;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1.4rem;
+}
+
+.d-flex .abt p {
+  color: #fff;
+  font-size: 15px;
+}
+
+.d-flex .form .cta {
+  background-color: var(--blue);
+  text-align: center;
+  padding: 15px 0;
+  border-radius: 8px;
+  box-shadow: 1px 5px 0 #67676778;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.d-flex .form .cta span {
+  font-weight: 700;
+}
+
+.d-flex .form form {
+  background-color: #fff;
+  border-radius: 9px;
+  padding: 2rem;
+  box-shadow: 1px 6px 0 #67676778;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-group img{
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  display: none;
+}
+
+.form-group .small{
+  display: none;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--red);
+  margin-top: 5px;
+}
+
+.form-group.error .small{
+  display: block;
+}
+
+.form-group.error img{
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.9rem 15px;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid rgb(198, 198, 198);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-group.error .form-control{
+  border: 2px solid var(--red);
+}
+
+.form-control:focus-within{
+    border-color: var(--blue);
+}
+
+.form-button {
+  width: 100%;
+  padding: 0.9rem 0;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--green);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  box-shadow: 0px 3px 0 #289767;
+}
+
+.form-button:hover{
+    opacity: .7;
+}
+
+.d-flex .form form .terms {
+  text-align: center;
+  font-weight: 500;
+}
+
+.d-flex .form form .terms p {
+  color: var(--grayishBlue);
+  font-size: 12px;
+}
+
+.d-flex .form form .terms span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    background-image: url(./assets/img/bg-intro-mobile.png);
+  }
+  .d-flex {
+    flex-direction: column;
+    margin: 0 10px;
+    padding: 5rem 0;
+  }
+  .d-flex .abt,
+  .d-flex .form {
+    width: 100%;
+  }
+  .d-flex .abt{
+      text-align: center;
+  }
+  .d-flex .abt h4{
+      font-size: 1.5rem;
+  }
+  .d-flex .abt p{
+      font-weight: 400;
+      text-align: center;
+  }
+  .d-flex .form{
+      margin-top: 1.5rem;
+  }
+  .d-flex .form .cta{
+      padding: 15px 4rem;
+  }
+}

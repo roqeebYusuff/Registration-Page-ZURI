@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Page</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <main>
+      <section class="wrapper">
+        <div class="container">
+          <div class="d-flex">
+            <div class="abt">
+              <h4>Learn to code by watching others</h4>
+              <p>
+                See how experienced developers solve problems in real-time.
+                Watching scripted tutorials is great, but understanding how
+                developers think is invaluable.
+              </p>
+            </div>
+
+            <div class="form">
+              <div class="cta">
+                <span>Try it free 7 days</span> then $20/mo thereafter
+              </div>
+              <form id="regForm">
+                <div class="form-group notValid">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    placeholder="First Name"
+                  />
+                  <img src="./assets/img/icon-error.svg" alt="" />
+                  <small class="small"></small>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    id="lastName"
+                  />
+                  <img src="./assets/img/icon-error.svg" alt="" />
+                  <small class="small"></small>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Email Address"
+                  />
+                  <img src="./assets/img/icon-error.svg" alt="" />
+                  <small class="small"></small>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    id="password"
+                  />
+                  <img src="./assets/img/icon-error.svg" alt="" />
+                  <small class="small"></small>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="form-button">
+                    Claim Your Free Trial
+                  </button>
+                </div>
+
+                <div class="terms">
+                  <p>
+                    By clicking the button, you are agreeing to our
+                    <span>Terms and Services</span>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+
+  <script>
+    let button = document.querySelector(".form-button");
+    let form = document.getElementById("regForm");
+    let firstName = document.getElementById("firstName");
+    let lastName = document.getElementById("lastName");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let firstNameCheck = checkFirstName();
+      let lastNameCheck = checkLastName();
+      let emailCheck = checkEmail();
+      let passwordCheck = checkPassword();
+
+      let isFormValid =
+        firstNameCheck || lastNameCheck || emailCheck || passwordCheck;
+
+      if (isFormValid) {
+        //submit form
+      } else {
+        //Error occured
+        console.log("An error occured");
+        return
+      }
+    });
+
+    const showError = (input, message) => {
+      //get the form-field element
+      const formField = input.parentElement;
+
+      //Add error class
+      formField.classList.remove("success");
+      formField.classList.add("error");
+
+      //shoe error message
+      const error = formField.querySelector("small");
+      error.textContent = message;
+    };
+
+    const showSuccess = (input) => {
+      //get the form-field element
+      const formField = input.parentElement;
+
+      //remove error class
+      formField.classList.remove("error");
+      formField.classList.add("success");
+
+      //hide error message
+      const error = formField.querySelector("small");
+      error.textContent = "";
+    };
+
+    const isEMailValid = (email) => {
+      const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return email.match(re);
+      // return re.match(email);
+    };
+
+    const isRequired = (value) => (value === "" ? false : true);
+
+    const checkFirstName = () => {
+      let valid = false;
+
+      const fName = firstName.value.trim();
+
+      if (!isRequired(fName)) {
+        showError(firstName, "First Name cannot be empty");
+      } else {
+        showSuccess(firstName);
+        valid = true;
+      }
+      return valid;
+    };
+
+    const checkLastName = () => {
+      let valid = false;
+
+      const lName = lastName.value.trim();
+
+      if (!isRequired(lName)) {
+        showError(lastName, "Last Name cannot be empty");
+      } else {
+        showSuccess(lastName);
+        valid = true;
+      }
+      return valid;
+    };
+
+    const checkEmail = () => {
+      const lEmail = email.value.trim();
+      let valid = false;
+
+      //Check is email field is not empty
+      if (!isRequired(lEmail)) {
+        showError(email, "Email Cannot be empty");
+      }
+      //Check if email is valid
+      else if (!isEMailValid(lEmail)) {
+        showError(email, "Looks like this is not an email");
+      } else {
+        showSuccess(email);
+        valid = true;
+      }
+      return valid;
+    };
+
+    const checkPassword = () => {
+      const lPassword = password.value.trim();
+      let valid = false;
+
+      if (!isRequired(lPassword)) {
+        showError(password, "Password cannot be empty");
+      } else {
+        showSuccess(password);
+        valid = true;
+      }
+      return valid;
+    };
+  </script>
+</html>
